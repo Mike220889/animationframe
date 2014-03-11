@@ -79,10 +79,12 @@
 		var context = {
 			'requestId' : null,
 			'cancel' : function(){ cancel = true; },
+			'isCanceled' : false,
 			'frame'  : 0,
 		};
 		(function loop(){
 			if(cancel){
+				this.isCanceled = true;
 				return;
 			}
 			context.requestId = requestAnimationFrame.call(window, loop);
