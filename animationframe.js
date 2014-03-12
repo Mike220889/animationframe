@@ -1,7 +1,7 @@
 (function(window){
 	/* RequestAnimationFrame
 	 * From Erik Moller's polyfill
-	 * Adapted to return an animationFrame object for use with requireJS
+	 * Adapted to return an animationFrame object
 	 * http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
 	*/
 
