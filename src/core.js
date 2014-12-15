@@ -17,8 +17,7 @@
 		}
 	})();
 
-	(function(requestAnimationFrame, cancelAnimationFrame){
-
+	(function(){
 		var lastTime = 0;
 		var vendors = ['webkit', 'moz', 'ms'];
 		for(var x = 0; x < vendors.length && !requestAnimationFrame; ++x) {
@@ -44,7 +43,7 @@
 				clearTimeout(id);
 			};
 		}
-	})(requestAnimationFrame, cancelAnimationFrame);
+	})();
 
 	var loopy = {};
 	loopy.request = function(callback){
