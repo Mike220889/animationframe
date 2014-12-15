@@ -75,19 +75,17 @@
 		 * anim.cancel(); //this will also cancel the animation
 		 */
 		var startTime = previousTime = getTime();
-		var cancel = false;
 		var context = {
 			'requestId' : null,
-			'cancel' : function(){ cancel = true; },
-			'isCanceled' : false,
+			'cancel' : function(){
+				animationFrame.cancel.call(window, this.requestId);
+			},
 			'frame'  : 0,
 		};
 		(function loop(){
-			if(cancel){
-				this.isCanceled = true;
-				return;
-			}
-			context.requestId = requestAnimationFrame.call(window, loop);
+			context.requestId = requestAnimationFrame.call(window, function(){
+				loop.call(context);
+			});
 
 			var currentTime = getTime();
 			var deltaTime = currentTime - previousTime;
@@ -97,7 +95,7 @@
 
 			context.frame++;
 			previousTime = currentTime;
-		}());
+		}.call(context));
 		return context;
 	}
 
