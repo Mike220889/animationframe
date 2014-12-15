@@ -1,0 +1,13 @@
+{
+	"name": "LoopyJS",
+	"version": "0.0.1",
+	"main": "dist/loopy.min.js",
+	"authors": [
+		"Mike Monteith <mike@mikemonteith.com>"
+	],
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"tests"
+	]
+}
