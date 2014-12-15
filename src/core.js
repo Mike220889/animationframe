@@ -5,6 +5,7 @@
 	 * http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
 	*/
 
+	//don't pollute the window scope
 	var requestAnimationFrame = window.requestAnimationFrame;
 	var cancelAnimationFrame  = window.cancelAnimationFrame || window.cancelRequestAnimationFrame;
 
@@ -45,8 +46,8 @@
 		}
 	})(requestAnimationFrame, cancelAnimationFrame);
 
-	var animationFrame = {};
-	animationFrame.request = function(callback){
+	var loopy = {};
+	loopy.request = function(callback){
 		/* Create a wrapper which gives change in time (deltaTime) to the callback, rather
 		 * than the current time which is what normal window.requestAnimationFrame does
 		 */
@@ -58,14 +59,14 @@
 		});
 	}
 
-	animationFrame.loop = function(callback){
+	loopy.loop = function(callback){
 		/* Often a rAF loop is needed,
 		 * Here we pass both the time since last frame (deltaTime) and time since start of loop (timeElapsed)
 		 * into the animationframe callback.
 		 * To stop the loop, the cancel method must be called on the callback context or the return value.
 		 *
 		 * Usage:
-		 * var anim = animationFrame.loop(function(deltaTime, timeElapsed){
+		 * var anim = loopy.loop(function(deltaTime, timeElapsed){
 		 *   if(timeElapsed > 1000){ //1 second
 		 *     this.cancel();
 		 *   }
@@ -78,7 +79,7 @@
 		var context = {
 			'requestId' : null,
 			'cancel' : function(){
-				animationFrame.cancel.call(window, this.requestId);
+				loopy.cancel.call(window, this.requestId);
 			},
 			'frame'  : 0,
 		};
@@ -99,9 +100,18 @@
 		return context;
 	}
 
-	animationFrame.cancel = function(id){
+	loopy.cancel = function(id){
 		cancelAnimationFrame.call(window, id);
 	}
 
-	window.animationFrame = animationFrame;
+	//expose globally
+	window.loopy = loopy;
+
+	//support AMD
+	if(typeof window.define === "function" && window.define.amd){
+		window.define("loopy", [], function(){
+			return window.loopy;
+		});
+	}
+
 })(window);
