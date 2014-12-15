@@ -62,7 +62,7 @@ All help is welcome!
 
 Possible future updates include
 
-* Tests
+* More tests
 * Examples
 * Wrapper for common animations
 	* Linear
