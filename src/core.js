@@ -11,7 +11,7 @@
 
 	var getTime = (function(){
 		if(typeof window.performance === 'undefined' || !window.performance.now){
-			return function(){ return window.Date.now() };
+			return function(){ return window.Date.now(); };
 		}else{
 			return function(){ return window.performance.now(); };
 		}
@@ -57,7 +57,7 @@
 			var deltaTime = currentTime - startTime; //time since request was made
 			callback(deltaTime);
 		});
-	}
+	};
 
 	loopy.loop = function(callback){
 		/* Often a rAF loop is needed,
@@ -75,7 +75,8 @@
 		 *
 		 * anim.cancel(); //this will also cancel the animation
 		 */
-		var startTime = previousTime = getTime();
+		var startTime, previousTime;
+		startTime = previousTime = getTime();
 		var context = {
 			'requestId' : null,
 			'cancel' : function(){
@@ -98,11 +99,11 @@
 			previousTime = currentTime;
 		}.call(context));
 		return context;
-	}
+	};
 
 	loopy.cancel = function(id){
 		cancelAnimationFrame.call(window, id);
-	}
+	};
 
 	//expose globally
 	window.loopy = loopy;
