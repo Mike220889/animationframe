@@ -76,18 +76,18 @@
 		 */
 		var startTime, previousTime;
 		startTime = previousTime = getTime();
+		var cancel = false;
 		var context = {
 			'requestId' : null,
 			'cancel' : function(){
-				loopy.cancel.call(window, this.requestId);
+				cancelAnimationFrame.call(window, this.requestId);
+				cancel = true;
 			},
 			'frame'  : 0,
 		};
-		(function loop(){
-			context.requestId = requestAnimationFrame.call(window, function(){
-				loop.call(context);
-			});
 
+		var tick = function(){
+			//this = window
 			var currentTime = getTime();
 			var deltaTime = currentTime - previousTime;
 			var timeElapsed = currentTime - startTime;
@@ -96,7 +96,14 @@
 
 			context.frame++;
 			previousTime = currentTime;
-		}.call(context));
+
+			if(!cancel){
+				context.requestId = requestAnimationFrame.call(window, tick);
+			}
+		};
+
+		context.requestId = requestAnimationFrame.call(window, tick);
+
 		return context;
 	};
 
