@@ -61,12 +61,13 @@ loopy.request(function(deltaTime){
 All help is welcome!
 
 Possible future updates include
-	* Tests
-	* Examples
-	* Wrapper for common animations
-		* Linear
-		* Exponential increase / decrease
-		* Sinusoidal
-		* Bezier easing
-	* Animation time config
-	* Play / Pause / Rewind methods
+
+* Tests
+* Examples
+* Wrapper for common animations
+	* Linear
+	* Exponential increase / decrease
+	* Sinusoidal
+	* Bezier easing
+* Animation time config
+* Play / Pause / Rewind methods
