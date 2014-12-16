@@ -45,20 +45,7 @@
 		}
 	})();
 
-	var loopy = {};
-	loopy.request = function(callback){
-		/* Create a wrapper which gives change in time (deltaTime) to the callback, rather
-		 * than the current time which is what normal window.requestAnimationFrame does
-		 */
-		var startTime = getTime();
-		return requestAnimationFrame.call(window, function(){
-			var currentTime = getTime();
-			var deltaTime = currentTime - startTime; //time since request was made
-			callback(deltaTime);
-		});
-	};
-
-	loopy.loop = function(callback){
+	var loopy = function(callback){
 		/* Often a rAF loop is needed,
 		 * Here we pass both the time since last frame (deltaTime) and time since start of loop (timeElapsed)
 		 * into the animationframe callback.
@@ -105,6 +92,18 @@
 		context.requestId = requestAnimationFrame.call(window, tick);
 
 		return context;
+	};
+
+	loopy.request = function(callback){
+		/* Create a wrapper which gives change in time (deltaTime) to the callback, rather
+		 * than the current time which is what normal window.requestAnimationFrame does
+		 */
+		var startTime = getTime();
+		return requestAnimationFrame.call(window, function(){
+			var currentTime = getTime();
+			var deltaTime = currentTime - startTime; //time since request was made
+			callback(deltaTime);
+		});
 	};
 
 	loopy.cancel = function(id){

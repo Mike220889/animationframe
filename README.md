@@ -17,7 +17,7 @@ $ grunt build
 Loop some code, and cancel the loop after 1000ms
 
 ```js
-var animation = loopy.loop(function(deltaTime, timeElapsed){
+var animation = loopy(function(deltaTime, timeElapsed){
 	//deltaTime: time since last loop
 	//timeElapsed: time since looping started
 
@@ -33,7 +33,7 @@ var animation = loopy.loop(function(deltaTime, timeElapsed){
 You can use the `this` context
 
 ```js
-loopy.loop(function(deltaTime, timeElapsed){
+loopy(function(deltaTime, timeElapsed){
 	if(timeElapsed >= 1000){
 		this.cancel();
 	}
@@ -43,7 +43,7 @@ loopy.loop(function(deltaTime, timeElapsed){
 You can access other less common information with `this` context
 
 ```js
-loopy.loop(function(deltaTime, timeElapsed){
+loopy(function(deltaTime, timeElapsed){
 	console.log("Currently running frame number: " + this.frame);
 });
 ```
