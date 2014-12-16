@@ -20,7 +20,11 @@ module.exports = function(grunt){
 
 		concat: {
 			all: {
-				src: '<%= config.src %>/*.js',	
+				src: [
+					'<%= config.src %>/core.js',
+					'<%= config.src %>/utility.js',
+					'<%= config.src %>/animation-helpers.js'
+				],
 				dest: '<%= config.dist %>/loopy.js',
 			}
 		},

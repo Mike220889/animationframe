@@ -65,20 +65,19 @@ var options = {
 	growth: false, //true for growth instead of decay
 };
 
-loopy.exponential(function(value){
+loopy.exponential(function(value, deltaTime, timeElapsed){
 	console.log("Exponentially decreasing value : " + value);
 }, options);
 ```
 
 ```js
-//default values, which can be changed
 var options = {
 	amplitude: 100,
 	phase: 0, //radians
 	period: 1000, //miliseconds
 };
 
-loopy.sinusoidal(function(value){
+loopy.sinusoidal(function(value, deltaTime, timeElapsed){
 	console.log("Sinusoidal value : " + value);
 }, options);
 ```
