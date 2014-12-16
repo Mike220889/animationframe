@@ -56,6 +56,33 @@ loopy.request(function(deltaTime){
 });
 ```
 
+You can use built-in animation helpers.
+
+```js
+var options = {
+	initial : 100,
+	halflife : 1000, //miliseconds
+	growth: false, //true for growth instead of decay
+};
+
+loopy.exponential(function(value){
+	console.log("Exponentially decreasing value : " + value);
+}, options);
+```
+
+```js
+//default values, which can be changed
+var options = {
+	amplitude: 100,
+	phase: 0, //radians
+	period: 1000, //miliseconds
+};
+
+loopy.sinusoidal(function(value){
+	console.log("Sinusoidal value : " + value);
+}, options);
+```
+
 ##Contributing
 
 All help is welcome!
@@ -66,8 +93,6 @@ Possible future updates include
 * Examples
 * Wrapper for common animations
 	* Linear
-	* Exponential increase / decrease
-	* Sinusoidal
 	* Bezier easing
 * Animation time config
 * Play / Pause / Rewind methods
