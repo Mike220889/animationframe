@@ -82,6 +82,18 @@ loopy.sinusoidal(function(value, deltaTime, timeElapsed){
 }, options);
 ```
 
+You should *never* place code inside an event handler that is listening to the window ```scroll``` event.
+This is because the scroll event can be fired a lot more than is needed, slowing down the browser. 
+Instead, you can use the ```loopy.scroll(callback);``` method
+
+```js
+loopy.scroll(function(deltaTime, timeElapsed){
+	var scrollPosition = window.pageYOffset;
+
+	//react to a change in scroll position here...
+});
+```
+
 ##Contributing
 
 All help is welcome!

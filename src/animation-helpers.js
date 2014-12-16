@@ -44,4 +44,21 @@
 		});
 	};
 
+	loopy.scroll = function(callback, options){
+		var getWindowPosition = function(){
+			return {
+				x : window.pageXOffset,
+				y : window.pageYOffset
+			};
+		};
+		var previousWindowPosition = getWindowPosition();
+		return loopy(function(deltaTime, timeElapsed){
+			var windowPosition = getWindowPosition();
+			if(windowPosition.y !== previousWindowPosition.y || windowPosition.x !== previousWindowPosition.x){
+				callback.call(this, deltaTime, timeElapsed);
+				previousWindowPosition = windowPosition;
+			}
+		});
+	};
+
 })(window.loopy);
