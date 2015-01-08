@@ -1,5 +1,6 @@
-(function(loopy){
+var extend = require('extend');
 
+module.exports = function(loopy){
 	/*
 	 * Exponential decay or growth
 	 * Options:
@@ -8,7 +9,7 @@
 	 *   growth: if true, value increases exponentially instead of decreasing.
 	 */
 	loopy.exponential = function(callback, options){
-		options = loopy.merge({
+		options = extend({
 			initial : 100,
 			halflife : 1000, //miliseconds
 			growth: false, //true for growth instead of decay
@@ -29,7 +30,7 @@
 	 *   period: time for one full sinusoidal cycle
 	 */
 	loopy.sinusoidal = function(callback, options){
-		options = loopy.merge({
+		options = extend({
 			amplitude: 100,
 			phase: 0, //radians
 			period: 1000, //miliseconds
@@ -60,5 +61,4 @@
 			}
 		});
 	};
-
-})(window.loopy);
+};

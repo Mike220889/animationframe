@@ -1,4 +1,5 @@
-(function(window){
+module.exports = (function(){
+	var window = window || global;
 	/* RequestAnimationFrame
 	 * From Erik Moller's polyfill
 	 * Adapted to return an animationFrame object
@@ -110,14 +111,5 @@
 		cancelAnimationFrame.call(window, id);
 	};
 
-	//expose globally
-	window.loopy = loopy;
-
-	//support AMD
-	if(typeof window.define === "function" && window.define.amd){
-		window.define("loopy", [], function(){
-			return window.loopy;
-		});
-	}
-
-})(window);
+	return loopy;
+})();

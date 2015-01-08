@@ -1,10 +1,10 @@
 module.exports = function(grunt){
 
 	grunt.loadNpmTasks("grunt-contrib-uglify");
-	grunt.loadNpmTasks("grunt-contrib-concat");
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-qunit");
 	grunt.loadNpmTasks("grunt-contrib-watch");
+	grunt.loadNpmTasks("grunt-browserify");
 
 	grunt.initConfig({
 		config : {
@@ -15,17 +15,6 @@ module.exports = function(grunt){
 		uglify: {
 			all: {
 				files: { '<%= config.dist %>/loopy.min.js': '<%= config.dist %>/loopy.js' },
-			}
-		},
-
-		concat: {
-			all: {
-				src: [
-					'<%= config.src %>/core.js',
-					'<%= config.src %>/utility.js',
-					'<%= config.src %>/animation-helpers.js'
-				],
-				dest: '<%= config.dist %>/loopy.js',
 			}
 		},
 
@@ -47,11 +36,22 @@ module.exports = function(grunt){
 			dist: {
 				files: ['src/*.js'],
 				tasks: ['build'],
+			},
+			dev : {
+				files: ['src/*.js'],
+				tasks: ['browserify'],
+			}
+		},
+
+		browserify: {
+			files: {
+				src: '<%= config.src %>/index.js',
+				dest: '<%= config.dist %>/loopy.js',
 			}
 		}
 	});
 
 	grunt.registerTask('test', ['qunit:main']);
-	grunt.registerTask('build', ['jshint', 'concat', 'uglify']);
+	grunt.registerTask('build', ['jshint', 'browserify', 'uglify']);
 	grunt.registerTask('default', ['test']);
 };
