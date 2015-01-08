@@ -10,5 +10,30 @@
   },
   "dependencies": {
     "extend": "^2.0.0"
-  }
+  },
+  "name": "loopyjs",
+  "description": "A polyfill and wrapper for requestAnimationFrame, providing common functionality for animation and timing loops",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mike220889/animationframe.git"
+  },
+  "keywords": [
+    "animationFrame",
+    "animation",
+    "loop"
+  ],
+  "author": "mike@mikemonteith.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mike220889/animationframe/issues"
+  },
+  "homepage": "https://github.com/Mike220889/animationframe"
 }
